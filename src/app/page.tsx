@@ -73,7 +73,9 @@ export default function Home() {
       const x = [selectedProperty];
       fetchCoordinates(x);
 
-      console.log("Property delected and map refetched")
+      console.log("Property delected and map refetched");
+    }else{
+      fetchCoordinates(properties);
     }
   }, [selectedProperty]);
 
