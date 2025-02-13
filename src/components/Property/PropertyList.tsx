@@ -37,8 +37,11 @@ const PropertyList: React.FC<PropertyListProps> = ({ properties }) => {
               className="w-full sm:w-full md:w-1/2 px-4 mb-8"
             >
               <PropertyCard
+                key={property.id}
                 isHighlited={
                   selectedProperty && property.id === selectedProperty.id
+                    ? true
+                    : false
                 }
                 property={property}
               />
