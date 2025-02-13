@@ -12,8 +12,6 @@ interface MapProps {
 export function Map({ coordinatesArray }: MapProps) {
   const mapRef = useRef(null);
 
-  const { selectedProperty } = useSearchContext();
-
   useEffect(() => {
     const initMap = async () => {
       const loader = new Loader({
