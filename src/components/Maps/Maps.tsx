@@ -11,7 +11,7 @@ interface MapProps {
 export function Map({ coordinatesArray }: MapProps) {
   const mapRef = useRef(null);
 
-  console.log(coordinatesArray,"coordinates")
+  console.log(coordinatesArray, "coordinates");
 
   useEffect(() => {
     const initMap = async () => {
@@ -26,10 +26,10 @@ export function Map({ coordinatesArray }: MapProps) {
 
       const positions = coordinatesArray;
 
-      const centerPosition:GeoCoordinates = {
-        lat: 34.1540,
-        lng:-118.6474
-      }
+      const centerPosition: GeoCoordinates = {
+        lat: 34.154,
+        lng: -118.6474,
+      };
 
       // map options
       const mapOptions: google.maps.MapOptions = {
@@ -43,7 +43,7 @@ export function Map({ coordinatesArray }: MapProps) {
 
       //add a marker for each position
       positions.forEach((position) => {
-        const marker = new AdvancedMarkerElement({
+        new AdvancedMarkerElement({
           map,
           position: position,
         });

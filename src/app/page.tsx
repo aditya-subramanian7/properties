@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Property } from "@/types/property";
 import Search from "@/components/Search/Search";
 // import { Settings } from "lucide-react";
-import FilterModal from "@/components/Filter/FilterModal";
+// import FilterModal from "@/components/Filter/FilterModal";
 import { Map } from "@/components/Maps/Maps";
 import { usePropertiesContext } from "@/contexts/PropertiesContext";
 export interface GeoCoordinates {
@@ -14,8 +14,8 @@ export interface GeoCoordinates {
 
 export default function Home() {
   // const [properties, setProperties] = useState<Property[] | undefined>();
-  const [filtersApplied, setFiltersApplied] = useState<string[]>();
-  const [showFilterModal, setShowFilterModal] = useState<boolean>(false);
+  // const [filtersApplied, setFiltersApplied] = useState<string[]>();
+  // const [showFilterModal, setShowFilterModal] = useState<boolean>(false);
   const [coordinatesArray, setCoordinatesArray] = useState<GeoCoordinates[]>();
 
   const [showMap, setShowMap] = useState<boolean>();
@@ -111,13 +111,13 @@ export default function Home() {
         </div>
       </div>
 
-      {showFilterModal && (
+      {/* {showFilterModal && (
         <FilterModal
           setFilters={setFiltersApplied}
           setShowFilterModal={setShowFilterModal}
           filters={filtersApplied}
         />
-      )}
+      )} */}
     </div>
   );
 }

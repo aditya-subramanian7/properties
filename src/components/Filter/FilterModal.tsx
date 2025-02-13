@@ -1,12 +1,12 @@
 interface FilterModalProps {
-  setFilters: (x: string[]) => void;
-  filters: string[] | undefined;
+  // setFilters: (x: string[]) => void;
+  // filters: string[] | undefined;
   setShowFilterModal: (x: boolean) => void;
 }
 
 export default function FilterModal({
-  setFilters,
-  filters,
+  // setFilters,
+  // filters,
   setShowFilterModal,
 }: FilterModalProps) {
   return (

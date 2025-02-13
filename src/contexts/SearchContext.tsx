@@ -5,7 +5,6 @@ import React, {
   useState,
   useContext,
   ReactNode,
-  useEffect,
 } from "react";
 import { JSX } from "react";
 import { Dispatch, SetStateAction } from "react";

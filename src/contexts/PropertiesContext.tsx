@@ -12,17 +12,17 @@ import db from "../lib/firebase";
 import { JSX } from "react";
 import { Dispatch, SetStateAction } from "react";
 
-interface Filter {
-  type: string;
-  value: string;
-}
+// interface Filter {
+//   type: string;
+//   value: string;
+// }
 
 interface PropertyContextType {
   properties: Property[];
   fetchProperties: () => Promise<void>;
   setProperties: Dispatch<SetStateAction<Property[]>>;
-  filters: Filter[] | undefined;
-  setFilters: Dispatch<SetStateAction<Filter[] | undefined>>;
+  // filters: Filter[] | undefined;
+  // setFilters: Dispatch<SetStateAction<Filter[] | undefined>>;
 }
 
 export const PropertiesContext = createContext<PropertyContextType | undefined>(
@@ -47,7 +47,7 @@ export function PropertiesProvider({
   children,
 }: PropertiesProviderProps): JSX.Element {
   const [properties, setProperties] = useState<Property[]>([]);
-  const [filters, setFilters] = useState<Filter[]>();
+  // const [filters, setFilters] = useState<Filter[]>();
 
   const fetchProperties = async (): Promise<void> => {
     const querySnapshot = await getDocs(collection(db, "Property"));
@@ -72,8 +72,8 @@ export function PropertiesProvider({
     <PropertiesContext.Provider
       value={{
         properties,
-        filters,
-        setFilters,
+        // filters,
+        // setFilters,
         setProperties,
         fetchProperties,
       }}
