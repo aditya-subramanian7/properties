@@ -1,6 +1,7 @@
 "use client";
 
 import { GeoCoordinates } from "@/app/page";
+import { useSearchContext } from "@/contexts/SearchContext";
 import { Loader } from "@googlemaps/js-api-loader";
 import { useEffect, useRef } from "react";
 
@@ -11,7 +12,7 @@ interface MapProps {
 export function Map({ coordinatesArray }: MapProps) {
   const mapRef = useRef(null);
 
-  console.log(coordinatesArray, "coordinates");
+  const { selectedProperty } = useSearchContext();
 
   useEffect(() => {
     const initMap = async () => {
@@ -26,14 +27,9 @@ export function Map({ coordinatesArray }: MapProps) {
 
       const positions = coordinatesArray;
 
-      const centerPosition: GeoCoordinates = {
-        lat: 34.154,
-        lng: -118.6474,
-      };
-
       // map options
       const mapOptions: google.maps.MapOptions = {
-        center: centerPosition,
+        center: coordinatesArray[0],
         zoom: 10,
         mapId: "NEXT_MAP",
       };

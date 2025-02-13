@@ -7,6 +7,7 @@ import Search from "@/components/Search/Search";
 // import FilterModal from "@/components/Filter/FilterModal";
 import { Map } from "@/components/Maps/Maps";
 import { usePropertiesContext } from "@/contexts/PropertiesContext";
+import { useSearchContext } from "@/contexts/SearchContext";
 export interface GeoCoordinates {
   lat: number;
   lng: number;
@@ -22,6 +23,7 @@ export default function Home() {
 
   // context
   const { properties, fetchProperties } = usePropertiesContext();
+  const { selectedProperty } = useSearchContext();
 
   //get the coordinates of all our addresses
   const getSingleCoordinate = async (
@@ -65,6 +67,15 @@ export default function Home() {
 
     console.log("refetched coordinates for map");
   }, [properties]);
+
+  useEffect(() => {
+    if (selectedProperty !== null && selectedProperty !== undefined) {
+      const x = [selectedProperty];
+      fetchCoordinates(x);
+
+      console.log("Property delected and map refetched")
+    }
+  }, [selectedProperty]);
 
   return (
     <div className="flex flex-col gap-2 md:p-10 py-3">
