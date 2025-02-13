@@ -3,7 +3,7 @@ import PropertyList from "@/components/Property/PropertyList";
 import { useEffect, useState } from "react";
 import { Property } from "@/types/property";
 import Search from "@/components/Search/Search";
-import { Settings } from "lucide-react";
+// import { Settings } from "lucide-react";
 import FilterModal from "@/components/Filter/FilterModal";
 import { Map } from "@/components/Maps/Maps";
 import { usePropertiesContext } from "@/contexts/PropertiesContext";
@@ -17,6 +17,8 @@ export default function Home() {
   const [filtersApplied, setFiltersApplied] = useState<string[]>();
   const [showFilterModal, setShowFilterModal] = useState<boolean>(false);
   const [coordinatesArray, setCoordinatesArray] = useState<GeoCoordinates[]>();
+
+  const [showMap, setShowMap] = useState<boolean>();
 
   // context
   const { properties, fetchProperties } = usePropertiesContext();
@@ -44,6 +46,10 @@ export default function Home() {
     setCoordinatesArray(results);
   };
 
+  const toggleMapState = () => {
+    setShowMap((prev) => !prev);
+  };
+
   useEffect(() => {
     // get all property data
     fetchProperties();
@@ -61,7 +67,13 @@ export default function Home() {
   }, [properties]);
 
   return (
-    <div className="flex flex-col p-10">
+    <div className="flex flex-col gap-2 md:p-10 py-3">
+      <button
+        onClick={toggleMapState}
+        className="btn md:hidden text-white border w-1/2 mx-auto"
+      >
+        {!showMap ? "Show Map" : "Show Places"}
+      </button>
       {/* Search bar ----- filters */}
       <div className="flex flex-row gap-2 items-center">
         <Search />
@@ -77,14 +89,22 @@ export default function Home() {
 
       <div className="flex w-full" style={{ height: "calc(100vh - 160px)" }}>
         {/* Left property section */}
-        <div className="md:w-3/5 w-full h-full pr-4 overflow-y-auto">
-          {" "}
-          {/* Added overflow-y-auto */}
-          {properties && <PropertyList properties={properties} />}
-        </div>
+        {
+          <div className="md:w-3/5 w-full h-full md:pr-4 overflow-y-auto">
+            {" "}
+            {/* Added overflow-y-auto */}
+            {!showMap
+              ? properties && <PropertyList properties={properties} />
+              : coordinatesArray && (
+                  <div className="px-4">
+                    <Map coordinatesArray={coordinatesArray} />
+                  </div>
+                )}
+          </div>
+        }
 
         {/* Right map section */}
-        <div className="md:w-2/5 w-full h-full">
+        <div className="md:w-2/5 hidden md:block w-full h-full">
           {" "}
           {/* Added h-full */}
           {coordinatesArray && <Map coordinatesArray={coordinatesArray} />}
