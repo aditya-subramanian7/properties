@@ -1,7 +1,6 @@
 "use client";
 
 import { GeoCoordinates } from "@/app/page";
-import { useSearchContext } from "@/contexts/SearchContext";
 import { Loader } from "@googlemaps/js-api-loader";
 import { useEffect, useRef } from "react";
 
