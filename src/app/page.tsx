@@ -105,7 +105,6 @@ export default function Home() {
         {
           <div className="md:w-3/5 w-full h-full md:pr-4 overflow-y-auto">
             {" "}
-            {/* Added overflow-y-auto */}
             {!showMap
               ? properties && <PropertyList properties={properties} />
               : coordinatesArray && (
